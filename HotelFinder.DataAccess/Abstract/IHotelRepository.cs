@@ -1,4 +1,5 @@
-﻿using HotelFinder.Entities;
+﻿using Dto.Dto;
+using HotelFinder.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace HotelFinder.DataAccess.Abstract
     public interface IHotelRepository
     {
         List<Hotel> GetAllHotels();
-        Hotel GetHotelById(int id);
-        Hotel CreateHotel(Hotel hotel);
-        Hotel UpdateHotel(Hotel hotel);
+        HotelDto GetHotelById(int id);
+        HotelDto CreateHotel(Hotel hotel);
+        HotelDto UpdateHotel(Hotel hotel);
         void DeleteHotel(int id);
     }
 }

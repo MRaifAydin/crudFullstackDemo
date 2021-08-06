@@ -1,4 +1,6 @@
-﻿using HotelFinder.DataAccess.Abstract;
+﻿using Dto.Conversion;
+using Dto.Dto;
+using HotelFinder.DataAccess.Abstract;
 using HotelFinder.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,13 +12,13 @@ namespace HotelFinder.DataAccess.Concrete
 {
     public class HotelRepository : IHotelRepository
     {
-        public Hotel CreateHotel(Hotel hotel)
+        public HotelDto CreateHotel(Hotel hotel)
         {
             using (var hotelDbContext = new HotelDbContext())
             {
                 hotelDbContext.Hotels.Add(hotel);
                 hotelDbContext.SaveChanges();
-                return hotel;
+                return HotelConversion.ToApi(hotel);
             }
         }
 
@@ -25,7 +27,7 @@ namespace HotelFinder.DataAccess.Concrete
             using (var hotelDbContext = new HotelDbContext())
             {
                 var deletedHotel = GetHotelById(id);
-                hotelDbContext.Hotels.Remove(deletedHotel);
+                hotelDbContext.Hotels.Remove(HotelConversion.ToEntity(deletedHotel));
                 hotelDbContext.SaveChanges();
             }
         }
@@ -38,21 +40,21 @@ namespace HotelFinder.DataAccess.Concrete
             }
         }
 
-        public Hotel GetHotelById(int id)
+        public HotelDto GetHotelById(int id)
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                return hotelDbContext.Hotels.Find(id);
+                return HotelConversion.ToApi(hotelDbContext.Hotels.Find(id));
             }
         }
 
-        public Hotel UpdateHotel(Hotel hotel)
+        public HotelDto UpdateHotel(Hotel hotel)
         {
             using (var hotelDbContext = new HotelDbContext())
             {
                 hotelDbContext.Hotels.Update(hotel);
                 hotelDbContext.SaveChanges();
-                return hotel;
+                return HotelConversion.ToApi(hotel);
             }
         }
     }
