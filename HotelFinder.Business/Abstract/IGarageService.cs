@@ -1,4 +1,5 @@
-﻿using HotelFinder.Entities;
+﻿using Dto.Dto;
+using HotelFinder.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace HotelFinder.Business.Abstract
     public interface IGarageService
     {
         List<Garage> GetAllGarages();
-        Garage GetGarageById(int id);
-        Garage CreateGarage(Garage garage);
-        Garage UpdateGarage(Garage garage);
+        GarageDto GetGarageById(int id);
+        GarageDto CreateGarage(GarageDto garage);
+        GarageDto UpdateGarage(GarageDto garage);
         void DeleteGarage(int id);
     }
 }

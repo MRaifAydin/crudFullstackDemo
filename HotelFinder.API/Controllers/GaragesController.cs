@@ -28,19 +28,19 @@ namespace HotelFinder.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public Garage Get(int id)
+        public GarageDto Get(int id)
         {
             return _garageService.GetGarageById(id);
         }
         
         [HttpPost]
-        public Garage Post([FromBody]Garage garage)
+        public GarageDto Post([FromBody]GarageDto garage)
         {
             return _garageService.CreateGarage(garage);
         }
 
         [HttpPut]
-        public Garage Put([FromBody]Garage garage)
+        public GarageDto Put([FromBody]GarageDto garage)
         {
             return _garageService.UpdateGarage(garage);
         }

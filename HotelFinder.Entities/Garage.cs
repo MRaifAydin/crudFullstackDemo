@@ -13,7 +13,6 @@ namespace HotelFinder.Entities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GarageId { get; set; }
-
         public int HotelId { get; set; }
         [ForeignKey("HotelId")]
         public virtual Hotel Hotel { get; set; }

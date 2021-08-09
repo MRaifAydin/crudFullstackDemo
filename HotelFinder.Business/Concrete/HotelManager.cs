@@ -1,4 +1,6 @@
-﻿using HotelFinder.Business.Abstract;
+﻿using Dto.Conversion;
+using Dto.Dto;
+using HotelFinder.Business.Abstract;
 using HotelFinder.DataAccess.Abstract;
 using HotelFinder.DataAccess.Concrete;
 using HotelFinder.Entities;
@@ -19,9 +21,9 @@ namespace HotelFinder.Business.Concrete
             _hotelRepository = hotelRepository;
         }
 
-        public Hotel CreateHotel(Hotel hotel)
+        public HotelDto CreateHotel(HotelDto hotel)
         {
-            return _hotelRepository.CreateHotel(hotel);
+            return _hotelRepository.CreateHotel(HotelConversion.ToEntity(hotel));
         }
 
         public void DeleteHotel(int id)
@@ -34,7 +36,7 @@ namespace HotelFinder.Business.Concrete
             return _hotelRepository.GetAllHotels();
         }
 
-        public Hotel GetHotelById(int id)
+        public HotelDto GetHotelById(int id)
         {
 
             if (id > 0)
@@ -45,9 +47,9 @@ namespace HotelFinder.Business.Concrete
             throw new Exception("Id cannot be less than 1");
         }
 
-        public Hotel UpdateHotel(Hotel hotel)
+        public HotelDto UpdateHotel(HotelDto hotel)
         {
-            return _hotelRepository.UpdateHotel(hotel);
+            return _hotelRepository.UpdateHotel(HotelConversion.ToEntity(hotel));
         }
     }
 }

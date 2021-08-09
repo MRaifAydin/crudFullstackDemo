@@ -1,4 +1,5 @@
-﻿using HotelFinder.Business.Abstract;
+﻿using Dto.Dto;
+using HotelFinder.Business.Abstract;
 using HotelFinder.Business.Concrete;
 using HotelFinder.Entities;
 using Microsoft.AspNetCore.Http;
@@ -44,19 +45,19 @@ namespace HotelFinder.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public Hotel Get(int id)
+        public HotelDto Get(int id)
         {
             return _hotelService.GetHotelById(id);
         }
 
         [HttpPost]
-        public Hotel Post([FromBody] Hotel hotel)
+        public HotelDto Post([FromBody] HotelDto hotel)
         {
             return _hotelService.CreateHotel(hotel);
         }
 
         [HttpPut]
-        public Hotel Put([FromBody] Hotel hotel)
+        public HotelDto Put([FromBody] HotelDto hotel)
         {
             return _hotelService.UpdateHotel(hotel);
         }

@@ -1,4 +1,5 @@
-﻿using Dto.Dto;
+﻿using Dto.Conversion;
+using Dto.Dto;
 using HotelFinder.Business.Abstract;
 using HotelFinder.DataAccess.Abstract;
 using HotelFinder.Entities;
@@ -13,16 +14,15 @@ namespace HotelFinder.Business.Concrete
     public class GarageManager : IGarageService
     {
         private IGarageRepository _garageRepository;
-
+        
         public GarageManager(IGarageRepository garageRepository)
         {
             _garageRepository = garageRepository;
         }
-        public Garage CreateGarage(Garage garage)
+
+        public GarageDto CreateGarage(GarageDto garage)
         {
-
-            return _garageRepository.CreateGarage(garage);
-
+            return _garageRepository.CreateGarage(GarageConversion.ToEntity(garage));
         }
 
         public void DeleteGarage(int id)
@@ -35,14 +35,15 @@ namespace HotelFinder.Business.Concrete
             return _garageRepository.GetAllGarages();
         }
 
-        public Garage GetGarageById(int id)
+        public GarageDto GetGarageById(int id)
         {
             return _garageRepository.GetGarageById(id);
         }
 
-        public Garage UpdateGarage(Garage garage)
+        public GarageDto UpdateGarage(GarageDto garage)
         {
-            return _garageRepository.UpdateGarage(garage);
+            return _garageRepository.UpdateGarage(GarageConversion.ToEntity(garage));
         }
+        
     }
 }
